@@ -175,6 +175,11 @@
               <layout>p2</layout>
               <url>https://download.eclipse.org/modeling/tmf/xtext/updates/releases/${xtext-version}</url>
             </repository>
+            <repository>
+              <id>itemis</id>
+              <layout>p2</layout>
+              <url>https://download.itemis.com/updates/releases/2.1.1/</url>
+            </repository>
           </source>
 
           <!-- starting from here all configuration parameters are optional -->
@@ -198,6 +203,9 @@
             </iu>
             <iu>
               <id>org.eclipse.emf.sdk.feature.group</id>
+            </iu>
+            <iu>
+              <id>de.itemis.xtext.antlr.feature.feature.group</id>
             </iu>
           </ius>
           <!-- The destination directory to mirror to. -->
