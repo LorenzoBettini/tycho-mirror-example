@@ -135,11 +135,6 @@
               <layout>p2</layout>
               <url>https://download.eclipse.org/epsilon/updates/2.3/</url>
             </repository>
-            <repository>
-              <id>Orbit ${eclipse-version}</id>
-              <layout>p2</layout>
-              <url>https://download.eclipse.org/tools/orbit/downloads/${eclipse-version}</url>
-            </repository>
           </source>
 
           <!-- List of IUs to mirror. If omitted, allIUs will be mirrored. -->
@@ -171,9 +166,6 @@
             </iu>
             <iu>
               <id>org.eclipse.epsilon.emf.feature.feature.group</id>
-            </iu>
-            <iu>
-              <id>org.apache.commons.math3</id>
             </iu>
           </ius>
           <!-- The destination directory to mirror to. -->
