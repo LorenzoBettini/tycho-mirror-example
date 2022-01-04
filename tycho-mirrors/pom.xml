@@ -171,6 +171,7 @@
           <!-- The destination directory to mirror to. -->
           <destination>${user.home}/eclipse-mirrors</destination>
           <includePacked>false</includePacked>
+          <includeOptional>false</includeOptional>
         </configuration>
       </plugin>
     </plugins>
