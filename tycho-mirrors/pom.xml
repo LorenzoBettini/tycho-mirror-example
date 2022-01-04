@@ -72,6 +72,8 @@
                 <targetFiles>
                   <targetFile>local.target</targetFile>
                 </targetFiles>
+                <checkDependencies>true</checkDependencies>
+                <checkProvisioning>true</checkProvisioning>
               </configuration>
             </execution>
           </executions>
