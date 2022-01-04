@@ -53,8 +53,9 @@
           <artifactId>tycho-p2-repository-plugin</artifactId>
           <version>${tycho-version}</version>
         </plugin>
-        <!-- Must be called explicitly with the goal
-          target-platform-validation:validate-target-platform@validate-target-platform -->
+        <!-- Must be called explicitly in a separate invocation
+          target-platform-validation:validate-target-platform@validate-target-platform
+          see also https://github.com/eclipse/tycho/issues/350 -->
         <plugin>
           <groupId>org.eclipse.tycho.extras</groupId>
           <artifactId>target-platform-validation-plugin</artifactId>
@@ -133,6 +134,11 @@
               <layout>p2</layout>
               <url>https://download.eclipse.org/epsilon/updates/2.3/</url>
             </repository>
+            <repository>
+              <id>Orbit ${eclipse-version}</id>
+              <layout>p2</layout>
+              <url>https://download.eclipse.org/tools/orbit/downloads/${eclipse-version}</url>
+            </repository>
           </source>
 
           <!-- List of IUs to mirror. If omitted, allIUs will be mirrored. -->
@@ -165,9 +171,13 @@
             <iu>
               <id>org.eclipse.epsilon.emf.feature.feature.group</id>
             </iu>
+            <iu>
+              <id>org.apache.commons.math3</id>
+            </iu>
           </ius>
           <!-- The destination directory to mirror to. -->
           <destination>${user.home}/eclipse-mirrors</destination>
+          <includePacked>false</includePacked>
         </configuration>
       </plugin>
     </plugins>
