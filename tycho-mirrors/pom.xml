@@ -10,7 +10,6 @@
 
   <properties>
     <tycho-version>2.5.0</tycho-version>
-    <tycho-extras-version>${tycho-version}</tycho-extras-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <eclipse-version>2021-12</eclipse-version>
     <xtext-version>2.25.0</xtext-version>
@@ -54,103 +53,52 @@
           <artifactId>tycho-p2-repository-plugin</artifactId>
           <version>${tycho-version}</version>
         </plugin>
+        <!-- Must be called explicitly with the goal
+          target-platform-validation:validate-target-platform@validate-target-platform -->
         <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>
-                      org.apache.maven.plugins
-                    </groupId>
-                    <artifactId>
-                      maven-clean-plugin
-                    </artifactId>
-                    <versionRange>
-                      [2.5,)
-                    </versionRange>
-                    <goals>
-                      <goal>clean</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore></ignore>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>
-                      org.codehaus.mojo
-                    </groupId>
-                    <artifactId>
-                      build-helper-maven-plugin
-                    </artifactId>
-                    <versionRange>
-                      [1.9.1,)
-                    </versionRange>
-                    <goals>
-                      <goal>add-resource</goal>
-                      <goal>add-source</goal>
-                      <goal>add-test-resource</goal>
-                      <goal>add-test-source</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore></ignore>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>
-                      org.eclipse.tycho
-                    </groupId>
-                    <artifactId>
-                      tycho-compiler-plugin
-                    </artifactId>
-                    <versionRange>
-                      [0.23.1,)
-                    </versionRange>
-                    <goals>
-                      <goal>compile</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore></ignore>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>
-                      org.eclipse.tycho
-                    </groupId>
-                    <artifactId>
-                      tycho-packaging-plugin
-                    </artifactId>
-                    <versionRange>
-                      [0.23.1,)
-                    </versionRange>
-                    <goals>
-                      <goal>build-qualifier</goal>
-                      <goal>build-qualifier-aggregator</goal>
-                      <goal>validate-id</goal>
-                      <goal>validate-version</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore></ignore>
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
+          <groupId>org.eclipse.tycho.extras</groupId>
+          <artifactId>target-platform-validation-plugin</artifactId>
+          <version>${tycho-version}</version>
+          <executions>
+            <!-- Binds by default to the lifecycle phase: validate. -->
+            <execution>
+              <id>validate-target-platform</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>validate-target-platform</goal>
+              </goals>
+              <configuration>
+                <targetFiles>
+                  <targetFile>local.target</targetFile>
+                </targetFiles>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
 
     <plugins>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <!-- create the local.target -->
+        <executions>
+          <execution>
+            <id>create-target-file</id>
+            <phase>process-resources</phase>
+            <configuration>
+              <target>
+                <ant antfile="create_local_target.ant" 
+                      target="create-target-file">
+                </ant>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.eclipse.tycho.extras</groupId>
         <artifactId>tycho-p2-extras-plugin</artifactId>
@@ -198,6 +146,9 @@
             </iu>
             <iu>
               <id>org.eclipse.swtbot.eclipse.feature.group</id>
+            </iu>
+            <iu>
+              <id>org.eclipse.swtbot.ide.feature.group</id>
             </iu>
             <iu>
               <id>org.eclipse.xtext.sdk.feature.group</id>
