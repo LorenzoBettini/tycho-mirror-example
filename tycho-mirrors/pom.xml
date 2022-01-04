@@ -64,7 +64,6 @@
             <!-- Binds by default to the lifecycle phase: validate. -->
             <execution>
               <id>validate-target-platform</id>
-              <phase>verify</phase>
               <goals>
                 <goal>validate-target-platform</goal>
               </goals>
