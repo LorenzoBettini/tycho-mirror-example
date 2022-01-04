@@ -180,11 +180,12 @@
               <layout>p2</layout>
               <url>https://download.itemis.com/updates/releases/2.1.1/</url>
             </repository>
+            <repository>
+              <id>Epsilon</id>
+              <layout>p2</layout>
+              <url>https://download.eclipse.org/epsilon/updates/2.3/</url>
+            </repository>
           </source>
-
-          <!-- starting from here all configuration parameters are optional -->
-          <!-- they are only shown here with default values for documentation 
-            purpose -->
 
           <!-- List of IUs to mirror. If omitted, allIUs will be mirrored. -->
           <!-- Omitted IU version element means latest version of the IU -->
@@ -206,6 +207,12 @@
             </iu>
             <iu>
               <id>de.itemis.xtext.antlr.feature.feature.group</id>
+            </iu>
+            <iu>
+              <id>org.eclipse.epsilon.picto.feature.feature.group</id>
+            </iu>
+            <iu>
+              <id>org.eclipse.epsilon.emf.feature.feature.group</id>
             </iu>
           </ius>
           <!-- The destination directory to mirror to. -->
