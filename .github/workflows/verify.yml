@@ -41,3 +41,5 @@ jobs:
     - name: Verify the TP against the Mirror
       run: mvn target-platform-validation:validate-target-platform@validate-target-platform
       working-directory: tycho-mirrors
+    - name: Show output contents
+      run: tree ~/eclipse-mirrors
