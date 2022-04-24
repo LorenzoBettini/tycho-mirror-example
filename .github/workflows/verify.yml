@@ -43,3 +43,4 @@ jobs:
       working-directory: tycho-mirrors
     - name: Show output contents
       run: tree ~/eclipse-mirrors
+      if: runner.os == 'Linux'
