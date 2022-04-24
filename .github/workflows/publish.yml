@@ -39,7 +39,6 @@ jobs:
       uses: crazy-max/ghaction-github-pages@v2
       with:
         target_branch: gh-pages
-        build_dir: ~/eclipse-mirrors
-        absolute_build_dir: true
+        build_dir: ../eclipse-mirrors
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
