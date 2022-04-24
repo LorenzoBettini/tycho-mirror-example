@@ -1,0 +1,44 @@
+name: Mirror and Verify
+
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml', '**/*.yml', '**/*.target') }}
+        restore-keys: ${{ runner.os }}-m2-
+    - name: Cache Mirror
+      uses: actions/cache@v2
+      with:
+        path: ~/eclipse-mirrors
+        key: ${{ runner.os }}-p2-mirror-${{ hashFiles('**/pom.xml', '**/*.target') }}
+        # the key match must be perfect:
+        # if we change the mirror or the tp we invalidate the cache
+    - name: Build the Mirror
+      run: mvn package
+      working-directory: tycho-mirrors
+    - name: Deploy to GitHub Pages
+      if: success()
+      uses: crazy-max/ghaction-github-pages@v2
+      with:
+        target_branch: gh-pages
+        build_dir: ~/eclipse-mirrors
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
