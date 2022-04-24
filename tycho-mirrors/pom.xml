@@ -177,7 +177,12 @@
           <destination>${user.home}/eclipse-mirrors</destination>
           <includePacked>false</includePacked>
           <includeOptional>false</includeOptional>
-          <latestVersionOnly>true</latestVersionOnly>
+          <!--
+            because some features, like epsilon, require an old version of org.antlr.runtime:
+            org.eclipse.epsilon.common 2.4.0.202203041826
+            requires 'osgi.bundle; org.antlr.runtime [3.1.1,3.5.3)'
+          -->
+          <latestVersionOnly>false</latestVersionOnly>
         </configuration>
       </plugin>
     </plugins>
