@@ -1,4 +1,4 @@
-name: Mirror and Verify
+name: Publish the mirror on GitHub Pages
 
 on:
   push:
@@ -40,5 +40,6 @@ jobs:
       with:
         target_branch: gh-pages
         build_dir: ~/eclipse-mirrors
+        absolute_build_dir: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
