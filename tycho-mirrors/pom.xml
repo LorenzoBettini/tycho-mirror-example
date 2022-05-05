@@ -158,6 +158,21 @@
               <id>org.eclipse.swtbot.ide.feature.group</id>
             </iu>
             <iu>
+              <id>org.eclipse.egit.feature.group</id>
+            </iu>
+            <iu>
+              <id>org.eclipse.m2e.feature.feature.group</id>
+            </iu>
+            <iu>
+              <id>org.eclipse.m2e.sse.ui.feature.feature.group</id>
+            </iu>
+            <iu>
+              <id>org.eclipse.emf.ecoretools.design.feature.group</id>
+            </iu>
+            <iu>
+              <id>org.eclipse.eclemma.feature.feature.group</id>
+            </iu>
+            <iu>
               <id>org.eclipse.xtext.sdk.feature.group</id>
             </iu>
             <iu>
